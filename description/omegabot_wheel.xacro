@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <material name="black">
+        <color rgba="0 0 0 1" />
+    </material>
+
+    <xacro:macro name="omegabot_wheel" params="name">
+        <link name="${name}">
+            <visual>
+                <origin xyz="0 0 0.0125" />
+                <geometry>
+                    <cylinder radius="0.0335" length="0.025" />
+                </geometry>
+                <material name="black" />
+            </visual>
+            <collision>
+                <origin xyz="0 0 0.0125" />
+                <geometry>
+                    <cylinder radius="0.0335" length="0.025" />
+                </geometry>
+            </collision>
+            <xacro:inertial_cylinder mass="0.01" length="0.025" radius="0.0335">
+                <origin xyz="0 0 0.0125" rpy="0 0 0" />
+            </xacro:inertial_cylinder>
+        </link>
+
+        <gazebo reference="${name}">
+            <material>Gazebo/Black</material>
+            <mu1>1.0</mu1>
+            <mu2>0.9</mu2>
+            <minDepth>0.001</minDepth>
+            <maxVel>1.0</maxVel>
+            <fdir1 expressed_in="omegabot_control/base_link">1 0 0</fdir1>
+        </gazebo>
+    </xacro:macro>
+
+</robot>

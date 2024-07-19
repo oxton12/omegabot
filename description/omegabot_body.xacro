@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
+
+    <xacro:macro name="omegabot_body" params="name">
+        <link name="${name}">
+            <visual>
+                <geometry>
+                    <box size="0.18 0.10 0.03" />
+                </geometry>
+                <material name="white" />
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="0.18 0.10 0.03" />
+                </geometry>
+            </collision>
+            <xacro:inertial_box mass="0.5" x="0.18" y="0.10" z="0.03">
+                <origin xyz="0 0 0" rpy="0 0 0" />
+            </xacro:inertial_box>
+        </link>
+
+        <gazebo reference="${name}">
+            <material>Gazebo/White</material>
+        </gazebo>
+    </xacro:macro>
+
+</robot>
